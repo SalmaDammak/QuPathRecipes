@@ -28,7 +28,7 @@ int    iRequiredTileSideLength_pixels = Math.round(dRequiredTileSideLength_pixel
 
 // Create output folder
 def name = GeneralTools.getNameWithoutExtension(imageData.getServer().getMetadata().getName())
-String folderName = "TileSideLengthOf_" + requestedTissueSize_microns.toString() + "_microns"
+String folderName = "TileSideLengthOf_" + targetTileSideLengthSize_microns.toString() + "_microns"
 def pathOutput = buildFilePath(PROJECT_BASE_DIR, folderName, name)
 mkdirs(pathOutput)
 
