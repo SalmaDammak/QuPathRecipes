@@ -51,4 +51,23 @@ new TileExporter(imageData)
     .overlap(0)                                 // Define overlap, in pixel units at the export resolution
     .writeTiles(pathOutput)                     // Write tiles to the specified directory
 
+// Save pixel side length for slide
+def calibration = getCurrentServer().getPixelCalibration()
+
+// in text format
+def file = new File(buildFilePath(PROJECT_BASE_DIR, folderName, name, 'calibration.txt'))
+file.text = calibration.pixelWidth + ", " + calibration.pixelHeight
+
+// in JSON format (this is clearer)
+def map = [
+  "name": getProjectEntry().getImageName(),
+  "pixel_width": calibration.pixelWidth,
+  "pixel_height": calibration.pixelHeight,
+]
+
+def gson = GsonTools.getInstance(true)
+
+def JSONfile = new File(buildFilePath(PROJECT_BASE_DIR, folderName, name, 'calibration.json'))
+JSONfile.text = gson.toJson(map)
+
 print 'Done!'
