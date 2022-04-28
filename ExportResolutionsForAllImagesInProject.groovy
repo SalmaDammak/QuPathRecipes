@@ -1,5 +1,5 @@
 /**
- * This script write the resolution information, the pixel width and height in microns, for every image
+ * This script writes the resolution information, the pixel width and height in microns, for every image
  * in the project to a JSON file. 
  *
  * Copied and modified from:
