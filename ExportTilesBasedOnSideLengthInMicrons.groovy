@@ -11,11 +11,13 @@
  */
  
 //**************************************** INPUT PARAMETERS********************************************************** 
-double modeTileSideLength_pixel = 224
-double modeScanResolution_micronsPerPixel = 0.2520
-double targetTileSideLengthSize_microns = modeTileSideLength_pixel * modeScanResolution_micronsPerPixel
+// Uncomment to specify the tile side length based on a target resolution and tile size in pixels
+//double modeTileSideLength_pixel = 224
+//double modeScanResolution_micronsPerPixel = 0.2520
+//double targetTileSideLengthSize_microns = modeTileSideLength_pixel * modeScanResolution_micronsPerPixel
 
-// requestedTissueSize_microns = 57           // uncomment to just specify a specific tile side length
+// uncomment to just specify a specific tile side length
+double targetTileSideLengthSize_microns = 57           
 //*******************************************************************************************************************
 
 import qupath.lib.images.servers.LabeledImageServer
