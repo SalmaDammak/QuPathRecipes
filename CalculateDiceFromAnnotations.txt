@@ -1,0 +1,47 @@
+// Delete old annotations created by this script
+// (to make debugging easier when running multiple times...)
+def toDelete = getAnnotationObjects().findAll(p -> p.getPathClass() == getPathClass('My new intersection'))
+removeObjects(toDelete, true)
+
+// Get all annotations classified as tumor
+def hierarchy = getCurrentHierarchy()
+def annotations = getAnnotationObjects()
+def tumorAnnotations = annotations.findAll(a -> a.getPathClass() == getPathClass('Tumor'))
+
+// Store list of new annotations
+// Means we can add them in one go (and avoid firing lots of addObject events)
+def newAnnotations = []
+
+// Loop through tumor annotations
+for (def a in tumorAnnotations) {
+    // Get all the objects that overlap with the ROI bounding box
+    def region = ImageRegion.createInstance(a.getROI())
+    def overlapping = hierarchy.getObjectsForRegion(null, region, null)
+    overlapping.remove(a)
+    
+    // Check for objects that overlap the tumor annotation
+    def geometry = a.getROI().getGeometry()
+    overlapping = overlapping.findAll(a2 -> a2.isAnnotation() && geometry.intersects(a2.getROI().getGeometry()))
+    
+    // Loop through the overlapping objects
+    for (def overlappingObject in overlapping) {
+        // Compute the intersection
+        def overlappingROI = overlappingObject.getROI()        
+        def roiIntersection = RoiTools.intersection([a.getROI(), overlappingROI])
+        
+        // Calculate dice score
+        def areaIntersection = roiIntersection.getArea()
+        def dice = 2 * areaIntersection / (overlappingROI.getArea() + a.getROI().getArea())
+        
+        // Create new annotation for the intersection and add dice score as a measurement
+        def newAnnotation = PathObjects.createAnnotationObject(roiIntersection, getPathClass('My new intersection'))        
+        
+        newAnnotation.getMeasurementList().putMeasurement('Dice', dice)
+        newAnnotation.getMeasurementList().close()        
+        newAnnotations << newAnnotation
+    }
+    
+}
+
+// Add the new (intersection) annotations all in one go
+addObjects(newAnnotations)
