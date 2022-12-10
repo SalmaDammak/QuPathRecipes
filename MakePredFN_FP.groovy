@@ -11,7 +11,7 @@ clearSelectedObjects();
 
 def imageData = getCurrentImageData();
 def imageName = imageData.getServer().getMetadata().getName();
-def file = new File("G:/Users/sdammak/Experiments/LUSC Segment/116 slides/0p5040/7 Prepare for QuPath [2022-09-07_16.19.33]/Results/01 Experiment Section/"+imageName[0..-5]+".csv")
+def file = new File("G:/Users/sdammak/Experiments/LUSC Segment/116 slides/0p2520/7 Prepare for QuPath [2022-09-13_18.45.38]/Results/01 Experiment Section/"+imageName[0..-5]+".csv")
 //def file = new File("C:/Users/sdammak/Desktop/SampleProj/"+imageName[0..-5]+"_predictions.csv")
 print file
 
@@ -26,13 +26,15 @@ while ((row = csvReader.readLine()) != null) {
     // read the tile information from the CSV
     double x_location = rowContent[1] as double;
     double y_location = rowContent[2] as double;
-    double sideLength = rowContent[3] as double;
-    boolean vdTP = rowContent[7] as double == 1;
-    boolean vdFP = rowContent[8] as double == 1;
-    boolean vdTN = rowContent[9] as double == 1;
-    boolean vdFN = rowContent[10] as double == 1;
+    double height = rowContent[3] as double;
+    double width = rowContent[4] as double;
     
-    def roi = new RectangleROI(x_location,y_location,sideLength,sideLength);
+    boolean vdTP = rowContent[8] as double == 1;
+    boolean vdFP = rowContent[9] as double == 1;
+    boolean vdTN = rowContent[10] as double == 1;
+    boolean vdFN = rowContent[11] as double == 1;
+    
+    def roi = new RectangleROI(x_location,y_location,width,height);
        
     def annotation = new PathAnnotationObject();
 
