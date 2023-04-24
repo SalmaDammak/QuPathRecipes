@@ -42,8 +42,8 @@ while ((row = csvReader.readLine()) != null) {
     // read the tile information from the CSV
     double x_location = rowContent[1] as double;
     double y_location = rowContent[2] as double;
-    double width = rowContent[3] as double;
-    double height = rowContent[4] as double;
+    double height = rowContent[3]as double;
+    double width = rowContent[4] as double;
     boolean prediction = rowContent[5] as double == 1;
     
     def roi = new RectangleROI(x_location,y_location,width,height);

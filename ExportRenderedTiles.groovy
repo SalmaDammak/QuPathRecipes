@@ -12,7 +12,7 @@ def imageData = getCurrentImageData()
 
 // Define output path relative to project with seperate folders for each slide, i.e., projectPath/folderName/slideFolder/
 def name = GeneralTools.getNameWithoutExtension(imageData.getServer().getMetadata().getName())
-String folderName = '0p2520_Foci'
+String folderName = '0p2520_Foci_rendered'
 def pathOutput = buildFilePath(PROJECT_BASE_DIR, folderName, name)
 mkdirs(pathOutput)
 

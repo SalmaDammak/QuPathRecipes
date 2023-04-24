@@ -38,7 +38,7 @@ new TileExporter(imageData)
     .downsample(downsample)     // Define export resolution
     .imageExtension('.png')     // Define file extension for original pixels (often .tif, .jpg, '.png' or '.ome.tif')
     .tileSize(tileSideLength)   // Define size of each tile, in pixels
-    .annotatedTilesOnly(false)   // If true, only export tiles if there is a (labeled) annotation present
+    .annotatedTilesOnly(true)   // If true, only export tiles if there is a (labeled) annotation present
     .overlap(0)                 // Define overlap, in pixel units at the export resolution
     .writeTiles(pathOutput)     // Write tiles to the specified directory
 
