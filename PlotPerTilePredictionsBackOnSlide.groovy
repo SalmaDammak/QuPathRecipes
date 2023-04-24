@@ -58,10 +58,10 @@ while ((row = csvReader.readLine()) != null) {
     imageData.getHierarchy().addPathObject(annotation);
 }
 // merge annotations
-selectObjectsByClassification(positiveClassName);
-mergeSelectedAnnotations();
+//selectObjectsByClassification(positiveClassName);
+//mergeSelectedAnnotations();
 
-selectObjectsByClassification(negativeClassName);
-mergeSelectedAnnotations();
+//selectObjectsByClassification(negativeClassName);
+//mergeSelectedAnnotations();
 
 print('Done!')

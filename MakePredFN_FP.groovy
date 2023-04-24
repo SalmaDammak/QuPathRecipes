@@ -45,11 +45,12 @@ while ((row = csvReader.readLine()) != null) {
     } else if (vdTN){
         annotation = new PathAnnotationObject(roi, PathClassFactory.getPathClass("TrueNegative",ColorTools.CYAN));
     } else if (vdFN){
-        annotation = new PathAnnotationObject(roi, PathClassFactory.getPathClass("FalseNegative",ColorTools.BLUE));
+        annotation = new PathAnnotationObject(roi, PathClassFactory.getPathClass("FalseNegative",ColorTools.MAGENTA));
     }
     imageData.getHierarchy().addPathObject(annotation);
 }
 // merge annotations
+/*
 selectObjectsByClassification("TruePositive");
 mergeSelectedAnnotations();
 
@@ -64,5 +65,5 @@ mergeSelectedAnnotations();
 
 //selectObjectsByClassification("Predicted_Stroma", "Other");
 //intersectSelectedAnnotations(); //https://forum.image.sc/t/intersecting-annotations-from-script/42889/3
-
+*/
 print('Done!')
