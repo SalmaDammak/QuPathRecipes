@@ -1,0 +1,54 @@
+{
+  "pixel_classifier_type": "OpenCVPixelClassifier",
+  "metadata": {
+    "inputPadding": 0,
+    "inputResolution": {
+      "pixelWidth": {
+        "value": 16.128,
+        "unit": "µm"
+      },
+      "pixelHeight": {
+        "value": 16.128,
+        "unit": "µm"
+      },
+      "zSpacing": {
+        "value": 1.0,
+        "unit": "z-slice"
+      },
+      "timeUnit": "SECONDS",
+      "timepoints": []
+    },
+    "inputWidth": 512,
+    "inputHeight": 512,
+    "inputNumChannels": 3,
+    "outputType": "CLASSIFICATION",
+    "outputChannels": [],
+    "classificationLabels": {
+      "0": {
+        "name": "Positive",
+        "color": [
+          250,
+          62,
+          62
+        ]
+      },
+      "1": {
+        "colorRGB": -12566464
+      }
+    }
+  },
+  "op": {
+    "type": "data.op.channels",
+    "colorTransforms": [
+      {
+        "channelName": "Green"
+      }
+    ],
+    "op": {
+      "type": "op.threshold.constant",
+      "thresholds": [
+        200.0
+      ]
+    }
+  }
+}
