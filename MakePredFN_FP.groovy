@@ -11,8 +11,8 @@ clearSelectedObjects();
 
 def imageData = getCurrentImageData();
 def imageName = imageData.getServer().getMetadata().getName();
-def file = new File("G:/Users/sdammak/Experiments/LUSC Segment/116 slides/0p2520/7 Prepare for QuPath [2022-09-13_18.45.38]/Results/01 Experiment Section/"+imageName[0..-5]+".csv")
-//def file = new File("C:/Users/sdammak/Desktop/SampleProj/"+imageName[0..-5]+"_predictions.csv")
+def file = new File(buildFilePath(PROJECT_BASE_DIR, "predictionTables" ,imageName[0..-5]+".csv"))
+print file
 print file
 
 def csvReader = new BufferedReader(new FileReader(file))
